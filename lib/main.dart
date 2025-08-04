@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:widget_latihan/page/receipt.dart';
+import 'package:widget_latihan/page/detail_page.dart';
+import 'package:widget_latihan/page/receipt_page.dart';
 
 import 'my_widget/my_button.dart';
 import 'my_widget/my_gridview.dart';
@@ -24,10 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.light(),
       ),
       // Attribut untuk menampilkan widget pertama yg akan ditampilakn ketika aplikasi di Running
-      home: const ReceiptPage(),
+      home: const DetailPage(),
     );
   }
 }
