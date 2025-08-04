@@ -42,40 +42,11 @@ class ReceiptPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Tipe Pembayaran', style: TextStyle(fontSize: 12)),
-                      Text(
-                        'Tunai',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
+                  buildTile('Tipe Pembayaran', 'Tunai'),
+                  buildTile('Order ID', 'TRX-100-10102030405'),
                 ],
               ),
             ),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Order ID', style: TextStyle(fontSize: 12)),
-                    Text(
-                      'TRX-100-10102030405',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
             Divider(thickness: 8, color: Colors.grey[100]),
             SizedBox(height: 16),
             Column(
@@ -164,103 +135,21 @@ class ReceiptPage extends StatelessWidget {
                 SizedBox(height: 16),
                 Divider(color: Colors.grey[200]),
                 SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Jumlah Pesanan', style: TextStyle(fontSize: 12)),
-                      ],
-                    ),
-                    Text('3', style: TextStyle(fontWeight: FontWeight.w600)),
-                  ],
+                buildTile('Jumlah Pesanan', '3'),
+                buildTile('Subtotal', 'Rp 49.000'),
+                buildTile('Pajak', 'Rp 0'),
+                buildTile(
+                  'Diskon',
+                  '- Rp 4.200',
+                  colorValue: Color(0xffEB4755),
                 ),
+
                 SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Subtotal', style: TextStyle(fontSize: 12)),
-                      ],
-                    ),
-                    Text(
-                      'Rp 49.000',
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('Pajak', style: TextStyle(fontSize: 12))],
-                    ),
-                    Text('Rp 0', style: TextStyle(fontWeight: FontWeight.w600)),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Diskon', style: TextStyle(fontSize: 12)),
-                      ],
-                    ),
-                    Text(
-                      '- Rp 4.200',
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16),
                 Divider(color: Colors.grey[200]),
                 SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total Tagihan',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      'Rp 44.800',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total Pembayaran',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      'Rp 50.000',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
+                buildTile('Total Tagihan', 'Rp 44.800', isBold: true),
+                buildTile('Total Pembayaran', 'Rp 50.000', isBold: true),
+
                 SizedBox(height: 8),
                 Divider(color: Colors.grey[200]),
                 SizedBox(height: 8),
@@ -350,6 +239,37 @@ class ReceiptPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildTile(
+    String title,
+    String value, {
+    Color? colorValue,
+    bool isBold = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: isBold ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: colorValue,
+            ),
+          ),
+        ],
       ),
     );
   }
